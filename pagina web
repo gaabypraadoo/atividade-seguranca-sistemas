@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Criptografia OTP</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Criptografia One Time Pad (XOR)</h1>
+    <form method="POST" action="/">
+      <label>Digite um número decimal:</label>
+      <input type="number" name="mensagem" required>
+      <button type="submit">Criptografar</button>
+    </form>
+
+    {% if resultado %}
+        {% if resultado.erro %}
+            <div class="resultado">{{ resultado.erro }}</div>
+        {% else %}
+            <div class="resultado">
+Mensagem decimal: {{ resultado.mensagem_decimal }}
+Mensagem binária: {{ resultado.mensagem_bin }}
+Chave decimal: {{ resultado.chave_decimal }}
+Chave binária: {{ resultado.chave_bin }}
+Criptografado decimal: {{ resultado.criptografado_decimal }}
+Criptografado binário: {{ resultado.criptografado_bin }}
+Descriptografado decimal: {{ resultado.descriptografado_decimal }}
+Descriptografado binário: {{ resultado.descriptografado_bin }}
+            </div>
+        {% endif %}
+    {% endif %}
+  </div>
+</body>
+</html>
