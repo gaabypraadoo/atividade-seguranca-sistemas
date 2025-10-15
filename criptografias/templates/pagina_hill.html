@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cifra de Hill</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Cifra de Hill</h1>
+        <form method="post" action="/hill">
+            <label>Mensagem:</label>
+            <input type="text" name="mensagem" required>
+
+            <label>Chave (número separados por espaço):</label>
+            <input type="text" name="chave" placeholder="Exemplo: 3 3 2 5" required>
+
+            <button type="submit">Criptografar</button>
+        </form>
+
+        {% if resultado %}
+            {% if resultado.erro %}
+                <div class="resultado">{{ resultado.erro }}</div>
+            {% else %}
+                <div class="resultado">
+                    Mensagem original: {{ resultado.mensagem_original }}
+                    Chave utilizada: {{ resultado.chave }}
+                    Texto criptografado: {{ resultado.criptografado }}
+                    Texto descriptografado: {{ resultado.descriptografado }}
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
