@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cifra de Vigenère</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Cifra de Vigenère</h1>
+    <form method="POST" action="/">
+      <label>Mensagem (mínimo 4 palavras):</label>
+      <input type="text" name="mensagem" required>
+
+      <label>Chave (palavra ou frase):</label>
+      <input type="text" name="chave" required>
+
+      <button type="submit">Criptografar</button>
+    </form>
+
+    {% if resultado %}
+        {% if resultado.erro %}
+            <div class="resultado">{{ resultado.erro }}</div>
+        {% else %}
+            <div class="resultado">
+Mensagem original: {{ resultado.mensagem_original }}
+Chave utilizada: {{ resultado.chave }}
+Texto criptografado: {{ resultado.criptografado }}
+Texto descriptografado: {{ resultado.descriptografado }}
+            </div>
+        {% endif %}
+    {% endif %}
+  </div>
+</body>
+</html>
